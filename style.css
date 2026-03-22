@@ -349,3 +349,17 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
+@media screen and (max-width: 480px) {
+  .quick-nap-container {
+    display: block !important; /* Forces it to show */
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .nap-button {
+    width: 80px; /* Makes buttons easier to tap with fingers */
+    margin: 5px;
+    padding: 12px;
+  }
+}
