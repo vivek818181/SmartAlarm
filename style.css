@@ -1,0 +1,351 @@
+ :root {
+     --bg: #0f172a;
+     --card: rgba(49, 51, 54, 0.7);
+     --accent: #09b2fb;
+     --text: #f8fafc;
+     --delete: #c50101;
+ }
+
+ body {
+     margin: 0;
+     font-family: 'Segoe UI', Roboto, sans-serif;
+     color: var(--text);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     height: 100vh;
+     overflow: hidden;
+     /* Attractive Midnight Nebula Background */
+     background: radial-gradient(circle at top right, #1e293b, #0f172a 60%),
+         radial-gradient(circle at bottom left, #1e1b4b, #0f172a 60%);
+     background-attachment: fixed;
+ }
+
+ /* 3D Analog Clock with Glassmorphism */
+ .clock-container {
+     perspective: 1000px;
+     margin-top: 40px;
+     filter: drop-shadow(0 30px 20px rgba(0, 0, 0, 0.5));
+ }
+
+ .clock {
+     width: 260px;
+     height: 260px;
+     border-radius: 50%;
+     position: relative;
+     background: rgba(116, 116, 116, 0.4);
+     transform: rotateX(15deg);
+     box-shadow:
+         0 0 10px rgb(33, 26, 26),
+         0 0 20px rgba(105, 138, 214, 0.6),
+         0 0 40px rgba(125, 163, 220, 0.4);
+
+     border: 12px solid rgba(36, 39, 82, 0.6);
+    
+ }
+
+ .number {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     text-align: center;
+     font-weight: bold;
+     font-size: 1.2rem;
+     color: var(--accent);
+     text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+     padding: 10px;
+     box-sizing: border-box;
+ }
+ 
+
+ .hand {
+     position: absolute;
+     bottom: 50%;
+     left: 50%;
+     transform-origin: bottom;
+     border-radius: 10px;
+     background: var(--text);
+     transition: transform 0.1s linear;
+ }
+
+ .hour {
+     width: 7px;
+     height: 60px;
+     z-index: 3;
+     background: #fff;
+ }
+
+ .minute {
+     width: 5px;
+     height: 90px;
+     z-index: 2;
+     background: var(--accent);
+ }
+
+ .second {
+     width: 2px;
+     height: 100px;
+     background: #ef4444;
+     z-index: 4;
+ }
+
+ .center-dot {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     width: 15px;
+     height: 15px;
+     background: var(--text);
+     border-radius: 50%;
+     transform: translate(-50%, -50%);
+     z-index: 10;
+ }
+
+ /* Alarm List Area */
+ .container {
+     width: 100%;
+     max-width: 400px;
+     flex-grow: 1;
+     margin-top: 30px;
+     padding: 20px;
+     box-sizing: border-box;
+     overflow-y: scroll;
+     scrollbar-width: none;
+ }
+
+ .container::-webkit-scrollbar {
+     display: none;
+ }
+
+ .alarm-card {
+     background: var(--card);
+     backdrop-filter: blur(5px);
+     padding: 20px;
+     border-radius: 20px;
+     margin-bottom: 15px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     border-left: 5px solid var(--accent);
+     animation: slideIn 0.4s ease-out;
+ }
+
+ @keyframes slideIn {
+     from {
+         opacity: 0;
+         transform: translateX(-20px);
+     }
+ }
+
+ .actions button {
+     background: rgba(255, 255, 255, 0.1);
+     border: 1px solid rgba(255, 255, 255, 0.2);
+     color: white;
+     padding: 8px 15px;
+     border-radius: 10px;
+     margin-left: 8px;
+     cursor: pointer;
+     transition: all 0.3s ease;
+ }
+
+ .actions button:hover {
+     background: var(--accent);
+     color: var(--bg);
+     transform: translateY(-3px);
+     box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+     font-weight: bold;
+ }
+
+ .fab {
+     position: fixed;
+     bottom: 30px;
+     right: 30px;
+     width: 65px;
+     height: 65px;
+     background: var(--accent);
+     border-radius: 50%;
+     font-size: 35px;
+     border: none;
+     cursor: pointer;
+     box-shadow: 0 10px 20px rgba(56, 189, 248, 0.4);
+     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+     z-index: 50;
+ }
+
+ .fab:hover {
+     transform: scale(1.1) rotate(90deg);
+ }
+
+ /* Modern Popups */
+ .popup {
+     position: fixed;
+     inset: 0;
+     background: rgba(0, 0, 0, 0.85);
+     backdrop-filter: blur(8px);
+     display: none;
+     justify-content: center;
+     align-items: center;
+     z-index: 100;
+ }
+
+ .popup-content {
+     background: #1e293b;
+     width: 90%;
+     max-width: 400px;
+     padding: 30px;
+     border-radius: 25px;
+     text-align: center;
+     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+     border: 1px solid rgba(255, 255, 255, 0.1);
+ }
+
+ .math-q {
+     font-size: 2.5rem;
+     margin: 20px 0;
+     color: var(--accent);
+     font-weight: bold;
+ }
+
+ .ans-input {
+     width: 80%;
+     background: #0f172a;
+     border: 2px solid #334155;
+     color: white;
+     padding: 15px;
+     font-size: 1.5rem;
+     border-radius: 15px;
+     text-align: center;
+     margin-bottom: 20px;
+ }
+
+ .save-btn {
+     background: var(--accent);
+     color: var(--bg);
+     padding: 18px;
+     border-radius: 15px;
+     font-weight: bold;
+     width: 90%;
+     font-size: 1.1rem;
+     cursor: pointer;
+ }
+ .save-btn:hover{
+    border:2px solid #f8fafc;
+ }
+ .cancel{
+    border-radius: 10px;
+ }
+ .cancel:hover{
+    font-weight: bold;
+ }
+ .fab-options {
+    position: fixed;
+    bottom: 90px; /* Sits above the FAB */
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fab-options button {
+    background: #1e293b;
+    color: white;
+    border: 1px solid var(--accent);
+    padding: 12px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+}
+
+.fab-options button:hover {
+    transform: scale(1.05);
+    background: var(--accent);
+}
+.rt-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 5px 0;
+    background: #1e293b;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid rgb(91, 158, 187);
+
+}
+
+.rt-item.selected {
+    border-color: #38bdf8; /* Your accent color */
+    background: #334155;
+}
+
+.play-icon {
+    width: 24px;
+    height: 24px;
+    filter: invert(1); /* Makes black SVGs white if needed */
+    transition: transform 0.2s;
+}
+
+.play-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Container for the menu options */
+.fab-options {
+    position: fixed;
+    bottom: 90px; /* Adjust based on your FAB position */
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* The row item */
+.menu-item {
+    display: flex;
+    align-items: center; /* Vertical center alignment */
+    gap: 15px;           /* Space between icon and text */
+    background: #1e293b; /* Dark theme color */
+    color: white;
+    border: 1px solid #334155;
+    padding: 12px 20px;
+    border-radius: 50px; /* Pill shape */
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+}
+
+.menu-item:hover {
+    transform: scale(1.05);
+    background: #334155;
+}
+
+/* Fixed size for your SVGs */
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+/* Larger font for the labels */
+.menu-item span {
+    font-size: 1.1rem;
+    font-weight: 500;
+    white-space: nowrap; /* Prevents text from wrapping to a second line */
+}
+.nap-btn {
+    background: #1e293b;
+    border: 1px solid #3b82f6;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.nap-btn:hover {
+    background: #3b82f6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
